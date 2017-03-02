@@ -1,0 +1,62 @@
+{%  extends 'base.html' %}
+
+{% load static %}
+
+
+{% block head %}
+      <!--Custome CSS Sheet!!!!!-->
+      <link type='text/css' rel='stylesheet' href='{% static 'busstops/css/site.css' %}'>
+
+      <script type="text/javascript">
+          var trimet_key = '{{ trimet_key }}';
+      </script>
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <script
+          src="http://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous">
+      </script>
+{% endblock %}
+{% block main %}
+  <main class='col-xs-8 col-sm-12'>
+        <h1 class='page-header'>Nearby TriMet Bus Stops</h1>
+        <h4>How far away, in yards, do you want to search?</h4>
+        <section class='row form-group'>
+            <div class='col-xs-2 col-sm-4'></div>
+            <fieldset id='query' class='col-xs-4' style='margin-bottom: 15px;'>
+                <form class='input-group'>
+                    <input type='number' class='form-control' placeholder="Radius in yards...">
+                    <span class='input-group-btn'>
+                        <button id='search' class='btn btn-default' type='button'>Search!</button>
+                    </span>
+                </form><!-- input-group -->
+            </fieldset>
+        </section>
+
+        <section>
+            <div id="map"></div>
+        </section>
+
+        <section class='row' id='load'>
+            <div class='col-xs-2 col-sm-3'></div>
+            <div class='col-xs-4' style='font-size: 36pt;'>Finding current location...</div>
+            <div class='col-xs-2 col-sm-2'><img src='{% static 'busstops/img/hourglass.gif' %}'></div>
+        </section>
+        <button id='return'>Return</button>
+        <ul id='output' class='list-group'>
+
+        </ul>
+        <!--Custom Script-->
+        <script src='{% static 'busstops/js/site.js' %}'></script>
+
+        <!--GOOGLE API Script-->
+        <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key={{ google_key }}&callback=initMap">
+        </script>
+
+    </main>
+{% endblock %}
+{% block footer %}
+{% endblock %}
